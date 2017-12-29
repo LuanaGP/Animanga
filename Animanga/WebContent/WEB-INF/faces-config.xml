@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	
+	<managed-bean>
+    <managed-bean-name>usuarioBean</managed-bean-name>
+    <managed-bean-class>enity.UsuarioBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  
+  <navigation-rule>
+    <from-view-id>/usuario.xhtml</from-view-id>
+  
+    <navigation-case>
+      <from-action>#{usuarioBean.persist}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/usuario.xhtml</to-view-id>
+    </navigation-case>
+  
+    <navigation-case>
+      <from-outcome>editar</from-outcome>
+      <to-view-id>/EditarUsuario.xhtml</to-view-id>
+    </navigation-case>
+  
+    <navigation-case>
+      <from-action>#{usuarioBean.remove}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/usuario.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule>
+    <from-view-id>/EditarUsuario.xhtml</from-view-id>
+  
+    <navigation-case>
+      <from-action>#{usuarioBean.update}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/usuario.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+ 
+ 
+ <managed-bean>
+    <managed-bean-name>perguntasBean</managed-bean-name>
+    <managed-bean-class>perguntas.PerguntasBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  
+  <navigation-rule>
+    <from-view-id>/perguntas.xhtml</from-view-id>
+  
+    <navigation-case>
+      <from-action>#{perguntasBean.persist}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/perguntas.xhtml</to-view-id>
+    </navigation-case>
+  
+    <navigation-case>
+      <from-outcome>editar</from-outcome>
+      <to-view-id>/EditarPerguntas.xhtml</to-view-id>
+    </navigation-case>
+  
+    <navigation-case>
+      <from-action>#{perguntasBean.remove}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/EditarPerguntas.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule>
+    <from-view-id>/EditarPerguntas.xhtml</from-view-id>
+  
+    <navigation-case>
+      <from-action>#{perguntasBean.update}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/perguntas.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+	
+	<managed-bean>
+    <managed-bean-name>AnimeBean</managed-bean-name>
+    <managed-bean-class>anime.AnimeBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  
+  <navigation-rule>
+    <from-view-id>/anime.xhtml</from-view-id>
+  
+    <navigation-case>
+      <from-action>#{AnimeBean.persist}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/anime.xhtml</to-view-id>
+    </navigation-case>
+  
+    <navigation-case>
+      <from-outcome>editar</from-outcome>
+      <to-view-id>/EditarAnime.xhtml</to-view-id>
+    </navigation-case>
+  
+    <navigation-case>
+      <from-action>#{animeBean.remove}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/anime.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule>
+    <from-view-id>/EditarAnime.xhtml</from-view-id>
+  
+    <navigation-case>
+      <from-action>#{animeBean.update}</from-action>
+      <from-outcome>sucesso</from-outcome>
+      <to-view-id>/anime.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+	
+</faces-config>

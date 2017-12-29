@@ -1,0 +1,117 @@
+
+<ui:composition
+	  template="templatesR/template_publico.xhtml"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  <hr/>
+  
+    <ui:define name="conteudo">
+  
+     <p:button value="Voltar" outcome="index.xhtml"/>  
+          
+           <center><h1>Cadastro de Usuário</h1></center>
+           <br/>
+           
+           
+            <h:form>
+        
+  						<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+			<div align="center">
+				<p:panelGrid columns="2">
+                     
+                        
+  						
+                        <p:outputLabel value="Nome" for="nome" />
+                        <p:inputText id="nome" size="50" requiredMessage="Erro no Nome" required="true" value="#{usuarioBean.usuario.nome}" />
+                       <br/><br/>
+                         <p:outputLabel value="endereço" for="endereço" />
+                        <p:inputText id="endereço" size="50" requiredMessage="Erro no endereço" required="true" value="#{usuarioBean.usuario.endereço}" />
+                    	
+                         <p:outputLabel value="Email" for="email" />
+                        <p:inputText id="email" size="50" requiredMessage="Erro no Email" required="true" value="#{usuarioBean.usuario.email}" />
+  						<br/><br/>
+   						<p:outputLabel value="Senha" for="senha" />
+                        <h:inputSecret id="senha" size="50" requiredMessage="Erro no Senha" required="true" value="#{usuarioBean.usuario.senha}" />
+                    <br/><br/>
+                   	<h:commandButton value="Cadastrar" class="btn-primary btn-lg">
+						<f:ajax event="click" execute="@form"
+							listener="#{usuarioBean.persist}" render="usuarios" />
+					</h:commandButton>
+                   	  
+                   	                </p:panelGrid>     
+               </div>
+  </h:form>
+                <br />
+                <hr width="50%"/>
+                <br />
+  				
+                <div align="center">
+                <p:panelGrid id="usuarios" columns="2">
+                <h:form>
+                    <h:dataTable value="#{usuarioBean.list}" var="_usuario" rendered="#{usuarioBean.list != null}" width="50%" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID" />
+                            </f:facet>
+                            <h:outputText value="#{_usuario.usuarioid}" />
+                        </h:column>
+  
+  						 <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{_usuario.nome}" />
+                        </h:column>
+  
+ 						 <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Endereço" />
+                            </f:facet>
+                            <h:outputText value="#{_usuario.endereço}" />
+                        </h:column>
+  
+  
+                        
+  
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email" />
+                            </f:facet>
+                            <h:outputText value="#{_usuario.email}" />
+                        </h:column>
+                        
+                        
+                       
+                       
+  
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Opções" />
+                            </f:facet>
+  
+                            <h:commandLink value="Editar/" action="editar">
+                                <f:setPropertyActionListener value="#{_usuario.usuarioid}" target="#{usuarioBean.id}"/>
+                            </h:commandLink>
+  
+                            <h:commandLink value="Remover" action="#{usuarioBean.remove}">
+                                <f:setPropertyActionListener value="#{_usuario.usuarioid}" target="#{usuarioBean.id}"/>
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                     </h:form>
+                    </p:panelGrid>
+                </div>
+       
+      
+
+
+
+    </ui:define>
+  </ui:composition>
+  
+	

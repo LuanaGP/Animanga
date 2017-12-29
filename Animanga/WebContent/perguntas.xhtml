@@ -1,0 +1,109 @@
+
+<ui:composition
+	  template="templatesR/template_autenticado.xhtml"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  <hr/>
+  
+    <ui:define name="conteudo">
+   
+    <div class="divPrincipal" style="background:url(mikasa.jpg);  height: 600px; width: 1350px;">
+     <p:button value="Voltar" outcome="index.xhtml"/>
+     
+       <center><h1>Questões</h1></center>
+       
+    	
+       <h:form>
+                        
+  						<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+			<div align="center">
+				<p:panelGrid columns="2">
+        
+                     
+                        
+  						
+                        <p:outputLabel value="Nome" for="nome" />
+                        <p:inputText id="nome" size="50" requiredMessage="Erro no Nome" required="true" value="#{perguntasBean.perguntas.nome}" />
+                        <br/><br/>
+                         <p:outputLabel value="Assunto" for="assunto" />
+                        <p:inputText id="assunto" size="50" requiredMessage="Erro no assunto" required="true" value="#{perguntasBean.perguntas.assunto}" />
+                    	
+                        <p:outputLabel value="Pergunta"  for="perguntas" />
+                        <p:inputText id="perguntas" size="50" requiredMessage="Erro na pergunta" required="true" value="#{perguntasBean.perguntas.perguntas}" />
+                       <br/><br/>
+                   <h:commandButton value="Cadastrar" class="btn-primary btn-lg">
+						<f:ajax event="click" execute="@form"
+							listener="#{perguntasBean.persist}" render="perguntass" />
+					</h:commandButton>
+                      
+                      </p:panelGrid>
+               </div>
+  </h:form>
+                <br />
+                <hr width="50%"/>
+                <br />
+  				
+                <div align="center">
+                <p:panelGrid id="perguntass" columns="2">
+                <h:form>
+                    <h:dataTable value="#{perguntasBean.list}" var="_perguntas" rendered="#{perguntasBean.list != null}" width="50%" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID" />
+                            </f:facet>
+                            <h:outputText value="#{_perguntas.perguntasid}" />
+                        </h:column>
+  
+  						 <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{_perguntas.nome}" />
+                        </h:column>
+  
+ 						 <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Assunto" />
+                            </f:facet>
+                            <h:outputText value="#{_perguntas.assunto}" />
+                        </h:column>
+  
+  
+                        
+  
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Perguntas" />
+                            </f:facet>
+                            <h:outputText value="#{_perguntas.perguntas}" />
+                        </h:column>
+                        
+    
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Opções" />
+                            </f:facet>
+  
+                            <h:commandLink value="Editar/" action="editar">
+                                <f:setPropertyActionListener value="#{_perguntas.perguntasid}" target="#{perguntasBean.id}"/>
+                            </h:commandLink>
+  
+                            <h:commandLink value="Remover" action="#{perguntasBean.remove}">
+                                <f:setPropertyActionListener value="#{_perguntas.perguntasid}" target="#{perguntasBean.id}"/>
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                     </h:form>
+                    </p:panelGrid>
+                </div>
+     </div>  
+      
+     
+    </ui:define>
+  </ui:composition>
+  

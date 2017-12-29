@@ -1,0 +1,44 @@
+
+<ui:composition
+	  template="templatesR/template_autenticado.xhtml"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  <hr/>
+  
+    <ui:define name="conteudo">
+
+<h:form>
+<br/><br/>
+    <p:messages id="messages" />
+            <p:panelGrid columns="2">
+            
+                  <h:inputHidden value="#{perguntasBean.perguntas.perguntasid}" />
+  
+                <div align="center">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Id" for="ID" />
+                        <h:inputText id="ID" value="#{perguntasBean.perguntas.perguntasid}" />
+  
+                        <h:outputLabel value="Nome" for="nome" />
+                        <h:inputText id="nome" value="#{perguntasBean.perguntas.nome}" />
+                        
+                         <h:outputLabel value="Assunto" for="assunto" />
+                        <h:inputText id="assunto" value="#{perguntasBean.perguntas.assunto}" />
+                   
+                        
+                         <h:outputLabel value="Perguntas" for="perguntas" />
+                        <h:inputText id="perguntas" value="#{perguntasBean.perguntas.perguntas}" />
+  
+   							
+                    <h:commandButton value="Confirmar" action="#{perguntasBean.update}" />
+                    </h:panelGrid>
+                </div>
+   
+            </p:panelGrid>
+        </h:form>
+
+   </ui:define>
+  </ui:composition>
